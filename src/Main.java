@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.nio.file.Files;
 import java.io.File;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import org.apache.commons.io.FileUtils;
 
 class Main {
@@ -9,6 +11,7 @@ class Main {
   private static HashSet<File> destinationDirs;
   private static int repeatDelayInSeconds;
   private static int keepCount;
+  private static Time time;
 
   public static void main(String[] args)
   {
@@ -57,8 +60,16 @@ class Main {
         }
       }
 
-      // Wait
-      performWait(repeatDelayInSeconds);
+      // Wait until it is time for the next copy!
+      if (time == null) {
+        performWait(repeatDelayInSeconds);
+      } else {
+        // We want to wait until the next time!
+        Time curTime = new Time(System.currentTimeMillis());
+        long waitTimeMs = curTime.getWaitPeriod(time);
+        System.out.println("Waiting for next occurrance of " + time);
+        performWait((int)(waitTimeMs/1000));
+      }
     }
   }
 
@@ -78,6 +89,7 @@ class Main {
     destinationDirs = new HashSet<File>();
     repeatDelayInSeconds = -1;
     keepCount = -1;
+    time = null;
     int waitInitial = 0;
 
     for (int a = 0; a < args.length; a += 2) {
@@ -91,6 +103,14 @@ class Main {
         }
       } else if (args[a].equals("-d")) {
         destinationDirs.add(new File(args[a+1]));
+      } else if (args[a].equals("-t")) {
+        if (time == null) {
+          time = new Time(args[a+1]);
+        } else {
+          System.err.println("Error parsing arguments! Time cannot be set more than once!");
+          printUsage();
+          System.exit(1);
+        }
       } else if (args[a].equals("-r")) {
         if (repeatDelayInSeconds == -1) {
           repeatDelayInSeconds = Integer.parseInt(args[a+1]);
@@ -126,13 +146,18 @@ class Main {
       printUsage();
       System.exit(1);
     }
-    if (repeatDelayInSeconds <= -1) {
-      System.err.println("Repeat delay not set.");
+    if (time == null && repeatDelayInSeconds <= -1) {
+      System.err.println("Time and repeat delay not set.");
       printUsage();
       System.exit(1);
     }
     if (keepCount <= -1) {
       System.err.println("Keep count not set.");
+      printUsage();
+      System.exit(1);
+    }
+    if (time != null && repeatDelayInSeconds > -1) {
+      System.err.println("Time and repeat both set, which makes no sense.");
       printUsage();
       System.exit(1);
     }
@@ -148,7 +173,7 @@ class Main {
     try {
       for (int i = 1; i <= seconds; i++) {
         Thread.sleep(1000);
-        System.out.println("Waited " + i + " of " + seconds + " seconds...");
+        // System.out.println("Waited " + i + " of " + seconds + " seconds...");
       }
     } catch (InterruptedException exc) {
       System.err.println("Something went wrong! " + exc.getMessage());
@@ -158,5 +183,44 @@ class Main {
 
   private static void printUsage() {
     System.out.println("See README.md at https://github.com/philiprodriguez/SimpleJavaDirectoryBackup for usage information.");
+  }
+
+  private static class Time {
+    int hour, minute, second;
+
+    public Time(long millis) {
+      GregorianCalendar gc = new GregorianCalendar();
+      gc.setTimeInMillis(millis);
+      this.hour = gc.get(Calendar.HOUR_OF_DAY);
+      this.minute = gc.get(Calendar.MINUTE);
+      this.second = gc.get(Calendar.SECOND);
+    }
+
+    public Time(String time24Hour) {
+      String[] parts = time24Hour.split(":");
+      this.hour = Integer.parseInt(parts[0]);
+      this.minute = Integer.parseInt(parts[1]);
+      this.second = Integer.parseInt(parts[2]);
+    }
+
+    private long getMillis() {
+      return 1000*second+60000*minute+(60*60000)*hour;
+    }
+
+    public long getWaitPeriod(Time nextTime) {
+      long ct = getMillis();
+      long nt = nextTime.getMillis();
+      if (ct >= nt) {
+        // We have all of nt plus the rest of today
+        return 86400000-ct+nt;
+      } else {
+        // Strictly less than means we wrapped to the next day, so just compute difference
+        return nt-ct;
+      }
+    }
+
+    public String toString() {
+      return hour + ":" + minute + ":" + second;
+    }
   }
 }
