@@ -45,8 +45,10 @@ class Main {
             File timeDest = new File(destination.getAbsolutePath().toString() + "/" + System.currentTimeMillis());
             timeDest.mkdirs();
             System.out.println("Copying to " + timeDest.getAbsolutePath().toString());
+            long startTime = System.currentTimeMillis();
             FileUtils.copyDirectory(sourceDir, timeDest);
-            System.out.println("Copy complete!");
+            long endTime = System.currentTimeMillis();
+            System.out.println("Copy complete! Took " + ((endTime-startTime)/60000) + " minutes.");
           } catch (Exception exc) {
             System.err.println("Copy failed! " + exc.getMessage());
           }
