@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
@@ -72,7 +73,7 @@ class Main {
             //FileUtils.copyDirectory(sourceDir, timeDest);
 
             // Manually copy files to ignore exceptions on any single file...
-            copyDirectory(sourceDir, timeDest);
+            copyDirectory(sourceDir, timeDest, timeDest);
 
             long endTime = System.currentTimeMillis();
             outputMessage("Copy complete! Took " + ((endTime-startTime)/60000) + " minutes.");
@@ -97,13 +98,13 @@ class Main {
           // Unsuccessful so we'll wait only for a destination to become available
           outputMessage("Waiting for a destination to become available...");
           couter: while (true) {
+            performWait(1, true);
             for (File destination : destinationDirs) {
               if (destination.exists() && destination.isDirectory()) {
                 outputMessage("Destination available: " + destination.toString());
                 break couter;
               }
             }
-            performWait(1, true);
           }
         }
       } else if (time == null) {
@@ -122,30 +123,37 @@ class Main {
     Copy source to destination, creating destination if needed. Ignore any
     exceptions that occur on any single file (e.g. permission issues, etc).
   */
-  private static void copyDirectory(File source, File destination) {
+  private static void copyDirectory(File source, File destination, File originalDestination) throws Exception {
     File[] dirFiles = source.listFiles();
     for (File f : dirFiles) {
       try {
         File equivalent = Paths.get(destination.toPath().toString(), f.getName()).toFile();
         if (f.isDirectory()) {
           if (equivalent.mkdirs()) {
-            copyDirectory(f, equivalent);
+            copyDirectory(f, equivalent, originalDestination);
           } else {
             outputMessage("Failed to create directory at " + equivalent.getAbsolutePath());
           }
         } else if (f.isFile()) {
           try {
             FileUtils.copyFile(f, equivalent);
-          } catch (Exception exc) {
+          } catch (IOException exc) {
             outputMessage("Failed to copy file at " + f.getAbsolutePath() + ": " + exc.getMessage());
+            throwIfNotExists(originalDestination, exc);
           }
         } else {
           outputMessage("Ignoring unrecognized entity at " + f.getAbsolutePath());
         }
-      } catch (Exception exc) {
+      } catch (IOException exc) {
         outputMessage("Failed to copy entity at " + f.getAbsolutePath() + ": " + exc.getMessage());
+        throwIfNotExists(originalDestination, exc);
       }
     }
+  }
+
+  private static void throwIfNotExists(File file, Exception exc) throws Exception {
+    if (!file.exists() || exc.getMessage().toLowerCase().contains("read-only"))
+      throw new Exception("Failed non-existence check!");
   }
 
   private static void printArgs() {
