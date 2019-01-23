@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.FileWriter;
@@ -67,11 +68,17 @@ class Main {
             timeDest.mkdirs();
             outputMessage("Copying to " + timeDest.getAbsolutePath().toString());
             long startTime = System.currentTimeMillis();
-            FileUtils.copyDirectory(sourceDir, timeDest);
+
+            //FileUtils.copyDirectory(sourceDir, timeDest);
+
+            // Manually copy files to ignore exceptions on any single file...
+            copyDirectory(sourceDir, timeDest);
+
             long endTime = System.currentTimeMillis();
             outputMessage("Copy complete! Took " + ((endTime-startTime)/60000) + " minutes.");
             successfulCopyOperation = true;
           } catch (Exception exc) {
+            exc.printStackTrace();
             System.err.println("Copy failed! " + exc.getMessage());
           }
         } else {
@@ -107,6 +114,36 @@ class Main {
         long waitTimeMs = curTime.getWaitPeriod(time);
         outputMessage("Waiting for next occurrance of " + time);
         performWait((int)(waitTimeMs/1000));
+      }
+    }
+  }
+
+  /*
+    Copy source to destination, creating destination if needed. Ignore any
+    exceptions that occur on any single file (e.g. permission issues, etc).
+  */
+  private static void copyDirectory(File source, File destination) {
+    File[] dirFiles = source.listFiles();
+    for (File f : dirFiles) {
+      try {
+        File equivalent = Paths.get(destination.toPath().toString(), f.getName()).toFile();
+        if (f.isDirectory()) {
+          if (equivalent.mkdirs()) {
+            copyDirectory(f, equivalent);
+          } else {
+            outputMessage("Failed to create directory at " + equivalent.getAbsolutePath());
+          }
+        } else if (f.isFile()) {
+          try {
+            FileUtils.copyFile(f, equivalent);
+          } catch (Exception exc) {
+            outputMessage("Failed to copy file at " + f.getAbsolutePath() + ": " + exc.getMessage());
+          }
+        } else {
+          outputMessage("Ignoring unrecognized entity at " + f.getAbsolutePath());
+        }
+      } catch (Exception exc) {
+        outputMessage("Failed to copy entity at " + f.getAbsolutePath() + ": " + exc.getMessage());
       }
     }
   }
