@@ -1,0 +1,82 @@
+Tue Jan 22 22:29:53 EST 2019: Simple Java Directory Backup
+Tue Jan 22 22:29:53 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup
+Tue Jan 22 22:29:53 EST 2019: Source: /home/philip
+Tue Jan 22 22:29:53 EST 2019: Destinations: 
+Tue Jan 22 22:29:53 EST 2019:     /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:29:53 EST 2019: Continuous Mode: true
+Tue Jan 22 22:29:53 EST 2019: Repeat Delay (in seconds): 10800
+Tue Jan 22 22:29:53 EST 2019: Keep Count: 3
+Tue Jan 22 22:29:53 EST 2019: Log to File: true
+Tue Jan 22 22:29:53 EST 2019: Time: null
+Tue Jan 22 22:29:53 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:29:53 EST 2019: Copying to /media/philip/SSD USB EXT4/backups/1548214193287
+Tue Jan 22 22:30:28 EST 2019: Simple Java Directory Backup
+Tue Jan 22 22:30:28 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup
+Tue Jan 22 22:30:28 EST 2019: Source: /home/philip/Videos
+Tue Jan 22 22:30:28 EST 2019: Destinations: 
+Tue Jan 22 22:30:28 EST 2019:     /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:30:28 EST 2019: Continuous Mode: true
+Tue Jan 22 22:30:28 EST 2019: Repeat Delay (in seconds): 10800
+Tue Jan 22 22:30:28 EST 2019: Keep Count: 3
+Tue Jan 22 22:30:28 EST 2019: Log to File: true
+Tue Jan 22 22:30:28 EST 2019: Time: null
+Tue Jan 22 22:30:28 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:30:28 EST 2019: Copying to /media/philip/SSD USB EXT4/backups/1548214228262
+Tue Jan 22 22:30:28 EST 2019: Copy complete! Took 0 minutes.
+Tue Jan 22 22:30:28 EST 2019: Successful continuous mode copy, so waiting...
+Tue Jan 22 22:30:28 EST 2019: Waiting 10800 seconds...
+Tue Jan 22 22:30:35 EST 2019: Simple Java Directory Backup
+Tue Jan 22 22:30:35 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup
+Tue Jan 22 22:30:35 EST 2019: Source: /home/philip/Videos
+Tue Jan 22 22:30:35 EST 2019: Destinations: 
+Tue Jan 22 22:30:35 EST 2019:     /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:30:35 EST 2019: Continuous Mode: true
+Tue Jan 22 22:30:35 EST 2019: Repeat Delay (in seconds): 10800
+Tue Jan 22 22:30:35 EST 2019: Keep Count: 3
+Tue Jan 22 22:30:35 EST 2019: Log to File: true
+Tue Jan 22 22:30:35 EST 2019: Time: null
+Tue Jan 22 22:30:35 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:30:35 EST 2019: Too many entries in destination, removing oldest!
+Tue Jan 22 22:30:35 EST 2019: Removing /media/philip/SSD USB EXT4/backups/1548213568535
+Tue Jan 22 22:31:19 EST 2019: Removed!
+Tue Jan 22 22:31:19 EST 2019: Copying to /media/philip/SSD USB EXT4/backups/1548214279444
+Tue Jan 22 22:31:19 EST 2019: Copy complete! Took 0 minutes.
+Tue Jan 22 22:31:19 EST 2019: Successful continuous mode copy, so waiting...
+Tue Jan 22 22:31:19 EST 2019: Waiting 10800 seconds...
+Tue Jan 22 22:33:19 EST 2019: Simple Java Directory Backup
+Tue Jan 22 22:33:19 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup
+Tue Jan 22 22:33:19 EST 2019: Source: /home/philip/Videos
+Tue Jan 22 22:33:19 EST 2019: Destinations: 
+Tue Jan 22 22:33:19 EST 2019:     /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:19 EST 2019: Continuous Mode: true
+Tue Jan 22 22:33:19 EST 2019: Repeat Delay (in seconds): 10800
+Tue Jan 22 22:33:19 EST 2019: Keep Count: 3
+Tue Jan 22 22:33:19 EST 2019: Log to File: true
+Tue Jan 22 22:33:19 EST 2019: Time: null
+Tue Jan 22 22:33:19 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:19 EST 2019: Too many entries in destination, removing oldest!
+Tue Jan 22 22:33:19 EST 2019: Removing /media/philip/SSD USB EXT4/backups/1548214193287
+Tue Jan 22 22:33:20 EST 2019: Copy failed! File does not exist: /media/philip/SSD USB EXT4/backups/1548214193287/Pictures/plates10252018/20181025_185241.jpg
+Tue Jan 22 22:33:20 EST 2019: Waiting for a destination to become available...
+Tue Jan 22 22:33:38 EST 2019: Simple Java Directory Backup
+Tue Jan 22 22:33:38 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup
+Tue Jan 22 22:33:38 EST 2019: Source: /home/philip/Videos
+Tue Jan 22 22:33:38 EST 2019: Destinations: 
+Tue Jan 22 22:33:38 EST 2019:     /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:38 EST 2019: Continuous Mode: true
+Tue Jan 22 22:33:38 EST 2019: Repeat Delay (in seconds): 10800
+Tue Jan 22 22:33:38 EST 2019: Keep Count: 3
+Tue Jan 22 22:33:38 EST 2019: Log to File: true
+Tue Jan 22 22:33:38 EST 2019: Time: null
+Tue Jan 22 22:33:38 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:38 EST 2019: Destination directory does not exist!
+Tue Jan 22 22:33:38 EST 2019: Waiting for a destination to become available...
+Tue Jan 22 22:33:44 EST 2019: Destination available: /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:44 EST 2019: Processing destination /media/philip/SSD USB EXT4/backups
+Tue Jan 22 22:33:44 EST 2019: Too many entries in destination, removing oldest!
+Tue Jan 22 22:33:44 EST 2019: Removing /media/philip/SSD USB EXT4/backups/1548214193287
+Tue Jan 22 22:33:44 EST 2019: Removed!
+Tue Jan 22 22:33:44 EST 2019: Copying to /media/philip/SSD USB EXT4/backups/1548214424229
+Tue Jan 22 22:33:44 EST 2019: Copy complete! Took 0 minutes.
+Tue Jan 22 22:33:44 EST 2019: Successful continuous mode copy, so waiting...
+Tue Jan 22 22:33:44 EST 2019: Waiting 10800 seconds...

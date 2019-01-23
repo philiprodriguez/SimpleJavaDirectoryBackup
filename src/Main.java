@@ -80,10 +80,10 @@ class Main {
             successfulCopyOperation = true;
           } catch (Exception exc) {
             exc.printStackTrace();
-            System.err.println("Copy failed! " + exc.getMessage());
+            outputMessage("Copy failed! " + exc.getMessage());
           }
         } else {
-          System.err.println("Destination directory does not exist!");
+          outputMessage("Destination directory does not exist!");
         }
       }
 
@@ -135,25 +135,20 @@ class Main {
             outputMessage("Failed to create directory at " + equivalent.getAbsolutePath());
           }
         } else if (f.isFile()) {
-          try {
-            FileUtils.copyFile(f, equivalent);
-          } catch (IOException exc) {
-            outputMessage("Failed to copy file at " + f.getAbsolutePath() + ": " + exc.getMessage());
-            throwIfNotExists(originalDestination, exc);
-          }
+          FileUtils.copyFile(f, equivalent);
         } else {
           outputMessage("Ignoring unrecognized entity at " + f.getAbsolutePath());
         }
-      } catch (IOException exc) {
+      } catch (Exception exc) {
         outputMessage("Failed to copy entity at " + f.getAbsolutePath() + ": " + exc.getMessage());
-        throwIfNotExists(originalDestination, exc);
+        throwIfDisconnected(originalDestination, exc);
       }
     }
   }
 
-  private static void throwIfNotExists(File file, Exception exc) throws Exception {
-    if (!file.exists() || exc.getMessage().toLowerCase().contains("read-only"))
-      throw new Exception("Failed non-existence check!");
+  private static void throwIfDisconnected(File file, Exception exc) throws Exception {
+    if (!file.exists() || (exc.getMessage() != null && exc.getMessage().toLowerCase().contains("read-only")) || (exc.getMessage() != null && exc.getMessage().toLowerCase().contains("input/output")))
+      throw new Exception("Failed disconnected check!");
   }
 
   private static void printArgs() {
@@ -275,7 +270,7 @@ class Main {
         // outputMessage("Waited " + i + " of " + seconds + " seconds...");
       }
     } catch (InterruptedException exc) {
-      System.err.println("Something went wrong! " + exc.getMessage());
+      outputMessage("Something went wrong! " + exc.getMessage());
       System.exit(1);
     }
   }
