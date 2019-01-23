@@ -2,8 +2,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.nio.file.Files;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Date;
 import org.apache.commons.io.FileUtils;
 
 class Main {
@@ -12,6 +15,8 @@ class Main {
   private static int repeatDelayInSeconds;
   private static int keepCount;
   private static Time time;
+  private static boolean continuousMode;
+  private static boolean logToFile;
 
   public static void main(String[] args)
   {
@@ -20,17 +25,30 @@ class Main {
     startLooping();
   }
 
+  private static void outputMessage(String message) {
+    String formattedMessage = new Date().toString() + ": " + message;
+    System.out.println(formattedMessage);
+    if (logToFile) {
+      try (PrintWriter output = new PrintWriter(new FileWriter("SimpleJavaDirectoryBackupLog.log", true))) {
+        output.println(formattedMessage);
+      } catch (Exception exc) {
+        exc.printStackTrace();
+      }
+    }
+  }
+
   private static void startLooping() {
     while(true) {
       // Perform copy operation
+      boolean successfulCopyOperation = false;
       for (File destination : destinationDirs) {
-        System.out.println("Processing destination " + destination.getAbsolutePath().toString());
+        outputMessage("Processing destination " + destination.getAbsolutePath().toString());
         if (destination.exists() && destination.isDirectory()) {
           try {
             // First, delete oldest if necessary!
             File[] existingFiles = destination.listFiles();
             if (existingFiles.length >= keepCount) {
-              System.out.println("Too many entries in destination, removing oldest!");
+              outputMessage("Too many entries in destination, removing oldest!");
               File oldest = existingFiles[0];
               for (File file : existingFiles) {
                 if (!file.isDirectory())
@@ -39,19 +57,20 @@ class Main {
                   oldest = file;
                 }
               }
-              System.out.println("Removing " + oldest.getAbsolutePath().toString());
+              outputMessage("Removing " + oldest.getAbsolutePath().toString());
               FileUtils.deleteDirectory(oldest);
-              System.out.println("Removed!");
+              outputMessage("Removed!");
             }
 
             // Now, put new copy!
             File timeDest = new File(destination.getAbsolutePath().toString() + "/" + System.currentTimeMillis());
             timeDest.mkdirs();
-            System.out.println("Copying to " + timeDest.getAbsolutePath().toString());
+            outputMessage("Copying to " + timeDest.getAbsolutePath().toString());
             long startTime = System.currentTimeMillis();
             FileUtils.copyDirectory(sourceDir, timeDest);
             long endTime = System.currentTimeMillis();
-            System.out.println("Copy complete! Took " + ((endTime-startTime)/60000) + " minutes.");
+            outputMessage("Copy complete! Took " + ((endTime-startTime)/60000) + " minutes.");
+            successfulCopyOperation = true;
           } catch (Exception exc) {
             System.err.println("Copy failed! " + exc.getMessage());
           }
@@ -60,28 +79,51 @@ class Main {
         }
       }
 
-      // Wait until it is time for the next copy!
-      if (time == null) {
+      // If we're in continuousMode...
+      if (continuousMode) {
+        // AND our copy just succeeded...
+        if (successfulCopyOperation) {
+          // We want to wait repeatDelayInSeconds.
+          outputMessage("Successful continuous mode copy, so waiting...");
+          performWait(repeatDelayInSeconds);
+        } else {
+          // Unsuccessful so we'll wait only for a destination to become available
+          outputMessage("Waiting for a destination to become available...");
+          couter: while (true) {
+            for (File destination : destinationDirs) {
+              if (destination.exists() && destination.isDirectory()) {
+                outputMessage("Destination available: " + destination.toString());
+                break couter;
+              }
+            }
+            performWait(1, true);
+          }
+        }
+      } else if (time == null) {
         performWait(repeatDelayInSeconds);
       } else {
         // We want to wait until the next time!
         Time curTime = new Time(System.currentTimeMillis());
         long waitTimeMs = curTime.getWaitPeriod(time);
-        System.out.println("Waiting for next occurrance of " + time);
+        outputMessage("Waiting for next occurrance of " + time);
         performWait((int)(waitTimeMs/1000));
       }
     }
   }
 
   private static void printArgs() {
-    System.out.println("Simple Java Directory Backup");
-    System.out.println("Source: " + sourceDir.getAbsolutePath().toString());
-    System.out.println("Destinations: ");
+    outputMessage("Simple Java Directory Backup");
+    outputMessage("Working Directory: " +  System.getProperty("user.dir"));
+    outputMessage("Source: " + sourceDir.getAbsolutePath().toString());
+    outputMessage("Destinations: ");
     for (File dest : destinationDirs) {
-      System.out.println("    " + dest.getAbsolutePath().toString());
+      outputMessage("    " + dest.getAbsolutePath().toString());
     }
-    System.out.println("Repeat Delay (in seconds): " + repeatDelayInSeconds);
-    System.out.println("Keep Count: " + keepCount);
+    outputMessage("Continuous Mode: " + continuousMode);
+    outputMessage("Repeat Delay (in seconds): " + repeatDelayInSeconds);
+    outputMessage("Keep Count: " + keepCount);
+    outputMessage("Log to File: " + logToFile);
+    outputMessage("Time: " + time);
   }
 
   private static void parseArgs(String[] args) {
@@ -90,6 +132,8 @@ class Main {
     repeatDelayInSeconds = -1;
     keepCount = -1;
     time = null;
+    continuousMode = false;
+    logToFile = false;
     int waitInitial = 0;
 
     for (int a = 0; a < args.length; a += 2) {
@@ -129,6 +173,11 @@ class Main {
         }
       } else if (args[a].equals("-w")) {
         waitInitial = Integer.parseInt(args[a+1]);
+      } else if (args[a].equals("-c")) {
+        repeatDelayInSeconds = Integer.parseInt(args[a+1]);
+        continuousMode = true;
+      } else if (args[a].equals("-l")) {
+        logToFile = args[a+1].toLowerCase().equals("y");
       } else {
         System.err.println("Error parsing arguments! Unrecognized argument \"" + args[a] + "\"");
         printUsage();
@@ -166,14 +215,19 @@ class Main {
   }
 
   private static void performWait(int seconds) {
+    performWait(seconds, false);
+  }
+
+  private static void performWait(int seconds, boolean quiet) {
     if (seconds <= 0)
       return;
 
-    System.out.println("Waiting " + seconds + " seconds...");
+    if (!quiet)
+      outputMessage("Waiting " + seconds + " seconds...");
     try {
       for (int i = 1; i <= seconds; i++) {
         Thread.sleep(1000);
-        // System.out.println("Waited " + i + " of " + seconds + " seconds...");
+        // outputMessage("Waited " + i + " of " + seconds + " seconds...");
       }
     } catch (InterruptedException exc) {
       System.err.println("Something went wrong! " + exc.getMessage());
