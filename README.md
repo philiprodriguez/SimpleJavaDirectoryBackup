@@ -13,17 +13,12 @@ This is supposed to be a one-night project. The goal is simple: make a tool for 
 Philip Rodriguez :)
 
 # Usage
-First compile the thing:
+Run the JAR artifact in the out folder:
 ```
-javac -cp "src/:lib/commons-io-2.6.jar" src/Main.java
-```
-
-Then, run the thing:
-```
-java -cp "src/:lib/commons-io-2.6.jar" Main -s /path/to/source/dir -d /path/to/destination1 -d /path/to/destination2 -r 600 -k 3 -w 1200
+java -jar SimpleJavaDirectoryBackup.jar -s /home/user/Pictures -d "/media/user/USBDRIVE/backups" -c 600 -k 3 -l someLogs -id one
 ```
 
-In the example above, a copy of the folder "/path/to/source/dir" will be made every 600 seconds (ten minutes) to the two destination paths. A maximum of three copies will be kept (so on the fourth copy, the oldest copy will get deleted first). The first copy will not occur for 1200 seconds (20 minutes).
+In the example above, a copy of the folder "/home/user/Pictures" will be made at most once every 600 seconds. A maximum of 3 copies will be kept. Logs files will be generated in the working directory with the prefix "someLogs". Since -c was used (continuous mode), if a copy cannot be made because the destination is unavailable at the time, then the application will "spin-wait" continuously until the destination becomes available again and then begin copying. Again, at most one copy every 600 seconds will be made. 
 
 
 # Arguments
@@ -33,6 +28,6 @@ In the example above, a copy of the folder "/path/to/source/dir" will be made ev
 `-t [time]` sets the time to try a copy, formatted in 24-hour time like hh:mm:ss. Shouldn't be used with the r or c flags.
 `-r [delay in seconds]` sets the repeat delay. That is, sets how long to wait between attempts to copy. Shouldn't be used with the t or c flags.
 `-k [keep count integer]` sets the keep count.
-`-w [delay in seconds]` sets the initial wait delay.
 `-c [delay in seconds]` sets continuous mode with a delay of some seconds between successful copies. Shouldn't be used with the t or r flags.
-`-l [y/n]` sets whether or not to log output to a text file. The file will always be in the working directory.
+`-l [log file name prefix]` when used, enables logging to a text file. Sets what the prefix of the log file name should be. Max log file size is 1MB.
+`-id [lock filename]` sets an id or name of sorts for this application instance. No other instance will be allowed to run in the same working directory with the same id. This is to prevent accidentally running multiple instances of the application.

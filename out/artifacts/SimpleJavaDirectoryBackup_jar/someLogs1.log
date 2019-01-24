@@ -1,0 +1,126 @@
+Wed Jan 23 23:15:55 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:15:55 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:15:55 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:15:55 EST 2019: Destinations: 
+Wed Jan 23 23:15:55 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:15:55 EST 2019: Continuous Mode: true
+Wed Jan 23 23:15:55 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:15:55 EST 2019: Keep Count: 3
+Wed Jan 23 23:15:55 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:15:55 EST 2019: Time: null
+Wed Jan 23 23:15:55 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:15:55 EST 2019: Copying to /media/philip/SSD USB EXT4/test/1548303355774
+Wed Jan 23 23:16:15 EST 2019: Copy complete! Took 0 minutes.
+Wed Jan 23 23:16:15 EST 2019: Successful continuous mode copy, scheduling next operation to happen in 30 seconds...
+Wed Jan 23 23:16:45 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:16:45 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:16:45 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:16:52 EST 2019: Destination available: /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:16:53 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:16:53 EST 2019: Copying to /media/philip/SSD USB EXT4/test/1548303413300
+Wed Jan 23 23:17:13 EST 2019: Copy complete! Took 0 minutes.
+Wed Jan 23 23:17:13 EST 2019: Successful continuous mode copy, scheduling next operation to happen in 30 seconds...
+Wed Jan 23 23:22:40 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:22:40 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:22:40 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:22:40 EST 2019: Destinations: 
+Wed Jan 23 23:22:40 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:22:40 EST 2019: Continuous Mode: true
+Wed Jan 23 23:22:40 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:22:40 EST 2019: Keep Count: 3
+Wed Jan 23 23:22:40 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:22:40 EST 2019: Time: null
+Wed Jan 23 23:22:40 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:22:40 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:22:40 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:22:53 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:22:53 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:22:53 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:22:53 EST 2019: Destinations: 
+Wed Jan 23 23:22:53 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:22:53 EST 2019: Continuous Mode: true
+Wed Jan 23 23:22:53 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:22:53 EST 2019: Keep Count: 3
+Wed Jan 23 23:22:53 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:22:53 EST 2019: Time: null
+Wed Jan 23 23:22:53 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:22:53 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:22:53 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:23:01 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:23:01 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:23:01 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:23:01 EST 2019: Destinations: 
+Wed Jan 23 23:23:01 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:01 EST 2019: Continuous Mode: true
+Wed Jan 23 23:23:01 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:23:01 EST 2019: Keep Count: 3
+Wed Jan 23 23:23:01 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:23:01 EST 2019: Time: null
+Wed Jan 23 23:23:01 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:01 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:23:01 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:23:02 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:23:02 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:23:02 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:23:02 EST 2019: Destinations: 
+Wed Jan 23 23:23:02 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:02 EST 2019: Continuous Mode: true
+Wed Jan 23 23:23:02 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:23:02 EST 2019: Keep Count: 3
+Wed Jan 23 23:23:02 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:23:02 EST 2019: Time: null
+Wed Jan 23 23:23:02 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:02 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:23:02 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:23:07 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:23:07 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:23:07 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:23:07 EST 2019: Destinations: 
+Wed Jan 23 23:23:07 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:07 EST 2019: Continuous Mode: true
+Wed Jan 23 23:23:07 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:23:07 EST 2019: Keep Count: 3
+Wed Jan 23 23:23:07 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:23:07 EST 2019: Time: null
+Wed Jan 23 23:23:07 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:07 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:23:07 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:23:29 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:23:29 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:23:29 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:23:29 EST 2019: Destinations: 
+Wed Jan 23 23:23:29 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:29 EST 2019: Continuous Mode: true
+Wed Jan 23 23:23:29 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:23:29 EST 2019: Keep Count: 3
+Wed Jan 23 23:23:29 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:23:29 EST 2019: Time: null
+Wed Jan 23 23:23:29 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:29 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:23:29 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:23:44 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:23:44 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:23:44 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:23:44 EST 2019: Destinations: 
+Wed Jan 23 23:23:44 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:44 EST 2019: Continuous Mode: true
+Wed Jan 23 23:23:44 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:23:44 EST 2019: Keep Count: 3
+Wed Jan 23 23:23:44 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:23:44 EST 2019: Time: null
+Wed Jan 23 23:23:44 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:23:44 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:23:44 EST 2019: Waiting for a destination to become available...
+Wed Jan 23 23:24:37 EST 2019: Simple Java Directory Backup
+Wed Jan 23 23:24:37 EST 2019: Working Directory: /home/philip/Documents/SimpleJavaDirectoryBackup/out/artifacts/SimpleJavaDirectoryBackup_jar
+Wed Jan 23 23:24:37 EST 2019: Source: /home/philip/Pictures
+Wed Jan 23 23:24:37 EST 2019: Destinations: 
+Wed Jan 23 23:24:37 EST 2019:     /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:24:37 EST 2019: Continuous Mode: true
+Wed Jan 23 23:24:37 EST 2019: Repeat Delay (in seconds): 30
+Wed Jan 23 23:24:37 EST 2019: Keep Count: 3
+Wed Jan 23 23:24:37 EST 2019: Log File Prefix: someLogs
+Wed Jan 23 23:24:37 EST 2019: Time: null
+Wed Jan 23 23:24:37 EST 2019: Processing destination /media/philip/SSD USB EXT4/test
+Wed Jan 23 23:24:37 EST 2019: Destination directory does not exist!
+Wed Jan 23 23:24:37 EST 2019: Waiting for a destination to become available...
