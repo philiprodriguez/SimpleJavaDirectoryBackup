@@ -107,9 +107,18 @@ public class CopyIterationRunnable implements Runnable {
     /*
       Copy source to destination, creating destination if needed. Ignore any
       exceptions that occur on any single file (e.g. permission issues, etc).
+      Also, ignore any directories containing a file named ".sjdbignore".
     */
     private void copyDirectory(File source, File destination, File originalDestination) throws Exception {
         File[] dirFiles = source.listFiles();
+        // Does this path contain an .sjdbignore file?
+        for (File f : dirFiles) {
+            if (f.getName().equals(".sjdbignore")) {
+                // We are done! Do not copy this directory at all!
+                logger.log("Ignoring directory " + source.getAbsolutePath() + " because it contains an sjdbignore file!");
+                return;
+            }
+        }
         for (File f : dirFiles) {
             try {
                 File equivalent = Paths.get(destination.toPath().toString(), f.getName()).toFile();
