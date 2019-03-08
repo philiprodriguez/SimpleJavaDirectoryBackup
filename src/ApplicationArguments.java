@@ -8,8 +8,9 @@ public class ApplicationArguments {
     private final int keepCount;
     private final Time time;
     private final boolean continuousMode;
+    private final boolean ignoreHidden;
 
-    public ApplicationArguments(File source, File[] destinations, int repeatDelayInSeconds, int keepCount, Time time, boolean continuousMode) {
+    public ApplicationArguments(File source, File[] destinations, int repeatDelayInSeconds, int keepCount, Time time, boolean continuousMode, boolean ignoreHidden) {
         this.source = source;
         this.destinations = Arrays.copyOf(destinations, destinations.length);
         this.repeatDelayInSeconds = repeatDelayInSeconds;
@@ -19,6 +20,7 @@ public class ApplicationArguments {
         else
             this.time = null;
         this.continuousMode = continuousMode;
+        this.ignoreHidden = ignoreHidden;
     }
 
     public File getSource() {
@@ -43,5 +45,9 @@ public class ApplicationArguments {
 
     public boolean isContinuousMode() {
         return continuousMode;
+    }
+
+    public boolean ignoreHidden() {
+        return ignoreHidden;
     }
 }

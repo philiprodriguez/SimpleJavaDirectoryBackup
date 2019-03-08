@@ -27,6 +27,7 @@ class Main {
             logger.log("    " + dest.getAbsolutePath());
         }
         logger.log("Continuous Mode: " + applicationArguments.isContinuousMode());
+        logger.log("Ignore Hidden Files: " + applicationArguments.ignoreHidden());
         logger.log("Repeat Delay (in seconds): " + applicationArguments.getRepeatDelayInSeconds());
         logger.log("Keep Count: " + applicationArguments.getKeepCount());
         logger.log("Log File Prefix: " + logger.getFilePrefix());
@@ -40,6 +41,7 @@ class Main {
         int keepCount = -1;
         Time time = null;
         boolean continuousMode = false;
+        boolean ignoreHidden = false;
 
         for (int a = 0; a < args.length; a += 2) {
             if (args[a].equals("-s")) {
@@ -79,6 +81,11 @@ class Main {
             } else if (args[a].equals("-c")) {
                 repeatDelayInSeconds = Integer.parseInt(args[a + 1]);
                 continuousMode = true;
+            } else if (args[a].equals("-h")) {
+                // Ignore hidden
+                ignoreHidden = true;
+                // Since no second part to this argument and we're doing a+=2, subtract one.
+                a--;
             } else if (args[a].equals("-l")) {
                 // Currently, just hardcode a 1MB max log file size.
                 logger = new Logger(args[a + 1], 1024 * 1024);
@@ -118,7 +125,7 @@ class Main {
             System.exit(1);
         }
 
-        applicationArguments = new ApplicationArguments(sourceDir, destinationDirs.toArray(new File[]{}), repeatDelayInSeconds, keepCount, time, continuousMode);
+        applicationArguments = new ApplicationArguments(sourceDir, destinationDirs.toArray(new File[]{}), repeatDelayInSeconds, keepCount, time, continuousMode, ignoreHidden);
     }
 
     private static void printUsage() {

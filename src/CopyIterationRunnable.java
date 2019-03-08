@@ -48,7 +48,7 @@ public class CopyIterationRunnable implements Runnable {
                     long startTime = System.currentTimeMillis();
 
                     // Manually copy files to ignore exceptions on any single file...
-                    copyDirectory(applicationArguments.getSource(), timeDest, timeDest);
+                    copyDirectory(applicationArguments.getSource(), timeDest, timeDest, applicationArguments.ignoreHidden());
 
                     long endTime = System.currentTimeMillis();
                     logger.log("Copy complete! Took " + ((endTime - startTime) / 60000) + " minutes.");
@@ -109,7 +109,7 @@ public class CopyIterationRunnable implements Runnable {
       exceptions that occur on any single file (e.g. permission issues, etc).
       Also, ignore any directories containing a file named ".sjdbignore".
     */
-    private void copyDirectory(File source, File destination, File originalDestination) throws Exception {
+    private void copyDirectory(File source, File destination, File originalDestination, boolean ignoreHidden) throws Exception {
         File[] dirFiles = source.listFiles();
         // Does this path contain an .sjdbignore file?
         for (File f : dirFiles) {
@@ -120,11 +120,17 @@ public class CopyIterationRunnable implements Runnable {
             }
         }
         for (File f : dirFiles) {
+            // Is the file hidden? If so, skip!
+            if (f.isHidden() && ignoreHidden) {
+                logger.log("Ignoring " + f.getAbsolutePath() + " since it is hidden!");
+                continue;
+            }
+
             try {
                 File equivalent = Paths.get(destination.toPath().toString(), f.getName()).toFile();
                 if (f.isDirectory()) {
                     if (equivalent.mkdirs()) {
-                        copyDirectory(f, equivalent, originalDestination);
+                        copyDirectory(f, equivalent, originalDestination, ignoreHidden);
                     } else {
                         logger.log("Failed to create directory at " + equivalent.getAbsolutePath());
                     }

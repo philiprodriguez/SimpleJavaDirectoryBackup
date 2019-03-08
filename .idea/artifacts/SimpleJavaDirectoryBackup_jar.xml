@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SimpleJavaDirectoryBackup:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SimpleJavaDirectoryBackup_jar</output-path>
+    <root id="archive" name="SimpleJavaDirectoryBackup.jar">
+      <element id="module-output" name="SimpleJavaDirectoryBackup" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-io-2.6.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
